@@ -1,3 +1,4 @@
+from requests import session
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -7,12 +8,11 @@ Base = declarative_base()
 class Author(Base):
     __tablename__ = 'authors'
     id = Column(Integer, primary_key=True)
-    # Add other properties as needed
+    
 
 class Magazine(Base):
     __tablename__ = 'magazines'
     id = Column(Integer, primary_key=True)
-    # Add other properties as needed
 
 class Article(Base):
     __tablename__ = 'articles'
@@ -29,7 +29,6 @@ class Article(Base):
         self.author = author
         self.magazine = magazine
         self.title = title
-        # Create a new entry in the database
         session.add(self)
         session.commit()
 

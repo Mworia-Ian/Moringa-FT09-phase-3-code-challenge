@@ -6,7 +6,6 @@ class Magazine:
         self._name = name
         self._category = category
         
-        # Create a new entry in the 'magazines' table
         conn = sqlite3.connect('magazine.db')
         c = conn.cursor()
         c.execute("INSERT INTO magazines (id, name, category) VALUES (?, ?, ?)", (self._id, self._name, self._category))
@@ -19,7 +18,6 @@ class Magazine:
 
     @property
     def name(self):
-        # Retrieve the name from the magazizine.db
         conn = sqlite3.connect('magazine.db')
         c = conn.cursor()
         c.execute("SELECT name FROM magazines WHERE id = ?", (self._id,))
@@ -32,7 +30,6 @@ class Magazine:
         if 2 <= len(new_name) <= 16:
             self._name = new_name
             
-            # Update the name in the magazine.db
             conn = sqlite3.connect('magazine.db')
             c = conn.cursor()
             c.execute("UPDATE magazines SET name = ? WHERE id = ?", (self._name, self._id))
@@ -43,7 +40,6 @@ class Magazine:
 
     @property
     def category(self):
-        # Retrieve the category from the magazine.db
         conn = sqlite3.connect('magazine.db')
         c = conn.cursor()
         c.execute("SELECT category FROM magazines WHERE id = ?", (self._id,))
@@ -56,7 +52,6 @@ class Magazine:
         if len(new_category) > 0:
             self._category = new_category
             
-            # Update the category in the magazine.db
             conn = sqlite3.connect('magazine.db')
             c = conn.cursor()
             c.execute("UPDATE magazines SET category = ? WHERE id = ?", (self._category, self._id))
